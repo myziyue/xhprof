@@ -3,7 +3,7 @@
 * 安装方法
 
 ```
-
+composer require "myziyue/xhprof"
 ```
 
 * 使用方法
