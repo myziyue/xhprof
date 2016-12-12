@@ -1,5 +1,13 @@
 # xhprof集成类库
 
+## 系统需求
+1. PHP扩展：xhprof
+2. 安装gd、graphviz、fontconfig
+以centos系统为例：
+```
+# yum install -y gd gd-devel fontconfig fontconfig-devel graphviz
+```
+
 ## 安装方法
 
 ```
