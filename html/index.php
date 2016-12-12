@@ -31,7 +31,7 @@
 //             Changhao Jiang
 //
 
-// by default assume that xhprof_html & xhprof_lib directories
+// by default assume that xhprof_html & lib directories
 // are at the same level.
 $GLOBALS['XHPROF_LIB_ROOT'] = dirname(__FILE__) . '/../lib';
 

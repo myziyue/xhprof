@@ -1,4 +1,5 @@
 #!/bin/bash
 #!/usr/bin/env php
-web_path=`pwd`
-php -S 0.0.0.0:1105 -t $web_path/html
+
+web_path=$(cd "$(dirname "$0")"; pwd)
+php -S 0.0.0.0:1105 -t $web_path/../myziyue/xhprof/html

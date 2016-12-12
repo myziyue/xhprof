@@ -29,9 +29,9 @@
  * @author Changhao Jiang (cjiang@facebook.com)
  */
 
-// by default assume that xhprof_html & xhprof_lib directories
+// by default assume that xhprof_html & lib directories
 // are at the same level.
-$GLOBALS['XHPROF_LIB_ROOT'] = dirname(__FILE__) . '/../xhprof_lib';
+$GLOBALS['XHPROF_LIB_ROOT'] = dirname(__FILE__) . '/../lib';
 
 require_once $GLOBALS['XHPROF_LIB_ROOT'].'/display/xhprof.php';
 
