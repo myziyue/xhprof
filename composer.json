@@ -29,9 +29,12 @@
     "autoload": {
         "psr-4": {"myziyue\\xhprof\\": ""}
     },
+    "bin": [
+        "zyxpf"
+    ],
     "extra": {
         "branch-alias": {
-            "dev-master": "0.*-dev"
+            "dev-master": "1.*-dev"
         }
     }
 }

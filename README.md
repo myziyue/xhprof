@@ -1,12 +1,13 @@
 # xhprof集成类库
 
-* 安装方法
+## 安装方法
 
 ```
 composer require myziyue/xhprof
+
 ```
 
-* 使用方法
+## 使用方法
 ```
 <?php
 function foo() {
@@ -23,4 +24,15 @@ foo();
 
 ZyXhprof::endProfiling('demo');
 
+```
+
+## 查看分析结果
+
+1. 首先，启动服务
+```
+./vendor/bin/zyxpf
+```
+2. 然后，通过浏览器，查看分析结果
+```
+http://localhost:1105/
 ```

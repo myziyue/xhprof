@@ -1,0 +1,4 @@
+#!/bin/bash
+#!/usr/bin/env php
+web_path=`pwd`
+php -S 0.0.0.0:1105 -t $web_path/html
