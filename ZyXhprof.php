@@ -10,8 +10,8 @@ namespace myziyue\xhprof;
  */
 defined('MYZY_XHPROF_ROOT') OR define('MYZY_XHPROF_ROOT', realpath(__DIR__));
 
-include_once MYZY_XHPROF_ROOT . "/xhprof_lib/utils/xhprof_lib.php";
-include_once MYZY_XHPROF_ROOT . "/xhprof_lib/utils/xhprof_runs.php";
+include_once MYZY_XHPROF_ROOT . "/lib/utils/xhprof_lib.php";
+include_once MYZY_XHPROF_ROOT . "/lib/utils/xhprof_runs.php";
 
 class ZyXhprof
 {
