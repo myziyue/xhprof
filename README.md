@@ -31,7 +31,7 @@ ZyXhprof::startProfiling();
 // run program
 foo();
 
-ZyXhprof::endProfiling('demo');
+ZyXhprof::stopProfiling('demo');
 
 ```
 
