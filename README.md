@@ -19,6 +19,8 @@ composer require myziyue/xhprof
 ## 使用方法
 ```
 <?php
+include './vendor/myziyue/xhprof/ZyXhprof.php';
+
 function foo() {
   for ($idx = 0; $idx < 5; $idx++) {
     bar($idx);
