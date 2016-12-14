@@ -17,6 +17,8 @@ composer require myziyue/xhprof
 ```
 
 ## 使用方法
+
+### 方式1：嵌入到项目中
 ```
 <?php
 include './vendor/myziyue/xhprof/ZyXhprof.php';
@@ -34,7 +36,23 @@ ZyXhprof::startProfiling();
 foo();
 
 ZyXhprof::stopProfiling('demo');
+```
 
+### 方式2： 通过注册系统关闭函数
+
+* 1、nginx配置文件增加如下代码：
+
+```
+fastcgi_param PHP_VALUE "auto_prepend_file=/var/www/vendor/myziyue/xhprof/ZyPreInject.php";
+fastcgi_param PHP_VALUE "auto_append_file=/var/www/vendor/myziyue/xhprof/ZyEndInject.php";
+
+```
+
+* 2、php.ini方式：
+
+```
+auto_prepend_file=/var/www/vendor/myziyue/xhprof/ZyPreInject.php;
+auto_append_file=/var/www/vendor/myziyue/xhprof/ZyEndInject.php;
 ```
 
 ## 查看分析结果
