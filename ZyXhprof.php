@@ -24,12 +24,11 @@ class ZyXhprof
      */
     public static function startProfiling($flags = 0, $options = [])
     {
-        if (self::isSupported()) {
-            xhprof_enable($flags, $options);
-            return true;
+        if (!self::isSupported()) {
+            exit(self::$_notLoadExtend);
         }
-        echo self::$_notLoadExtend;
-        exit(1);
+        xhprof_enable($flags, $options);
+        return true;
     }
 
     /**
@@ -37,23 +36,18 @@ class ZyXhprof
      * @param string $namespace
      * @return null|string
      */
-    public static function stopProfiling($namespace = '', $runId = '')
+    public static function stopProfiling($namespace = '')
     {
-        if (self::isSupported()) {
-            return self::saveProfiling(self::disableProfiling(), $namespace, $runId);
-        }
-        echo self::$_notLoadExtend;
-        exit(1);
+        return self::saveProfiling(self::disableProfiling(), $namespace);
     }
 
     public static function startSampleProfiling()
     {
-        if (self::isSupported()) {
-            xhprof_sample_enable();
-            return true;
+        if (!self::isSupported()) {
+            exit(self::$_notLoadExtend);
         }
-        echo self::$_notLoadExtend;
-        exit(1);
+        xhprof_sample_enable();
+        return true;
     }
 
     /**
@@ -61,42 +55,26 @@ class ZyXhprof
      * @param string $namespace
      * @return null|string
      */
-    public static function stopSampleProfiling($namespace = '', $runId = '')
+    public static function stopSampleProfiling($namespace = '')
     {
-        if (self::isSupported()) {
-            return self::saveProfiling(self::disableSampleProfiling(), $namespace, $runId);
-        }
-        echo self::$_notLoadExtend;
-        exit(1);
+        return self::saveProfiling(self::disableSampleProfiling(), $namespace);
     }
 
     public static function disableProfiling()
     {
-        if (self::isSupported()) {
-            return xhprof_disable();
-        }
-        echo self::$_notLoadExtend;
-        exit(1);
+        return xhprof_disable();
     }
 
-    public static function saveProfiling($xhprofData, $namespace = '', $runId = '')
+    public static function saveProfiling($xhprofData, $namespace = '')
     {
-        if (self::isSupported()) {
-            $xhprofRuns = new \XHProfRuns_Default();
-            $namespace = $namespace ? $namespace : ($_SERVER['QUERY_STRING'] ? $_SERVER['QUERY_STRING'] : 'index');
-            return $xhprofRuns->save_run($xhprofData, self::replace_specialChar($namespace), $runId);
-        }
-        echo self::$_notLoadExtend;
-        exit(1);
+        $xhprofRuns = new \XHProfRuns_Default();
+        $namespace = $namespace ? $namespace : ($_SERVER['QUERY_STRING'] ? $_SERVER['QUERY_STRING'] : 'index');
+        return $xhprofRuns->save_run($xhprofData, self::replace_specialChar($namespace));
     }
 
     public static function disableSampleProfiling()
     {
-        if (self::isSupported()) {
-            return xhprof_sample_disable();
-        }
-        echo self::$_notLoadExtend;
-        exit(1);
+        return xhprof_sample_disable();
     }
 
     protected static function isSupported()
@@ -106,7 +84,7 @@ class ZyXhprof
 
     protected static function replace_specialChar($strParam)
     {
-        $regex = "/\/|\~|\!|\@|\#|\\$|\%|\^|\&|\*|\(|\)|\_|\+|\{|\}|\:|\<|\>|\?|\[|\]|\,|\.|\/|\;|\'|\`|\-|\=|\\\|\|/";
+        $regex = "/\/|\~|\!|\@|\#|\\$|\%|\^|\&|\*|\(|\)|\_|\+|\{|\}|\:|\<|\>|\?|\[|\]|\,|\.|\/|\;|\'|\`|\-|\\\|\|/";
         return preg_replace($regex, '-', $strParam);
     }
 }
