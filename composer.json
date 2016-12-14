@@ -30,7 +30,8 @@
         "psr-4": {"myziyue\\xhprof\\": ""}
     },
     "bin": [
-        "bin/zyxpf"
+        "bin/zyxpf",
+        "bin/zyxpf.bat"
     ],
     "extra": {
         "branch-alias": {
