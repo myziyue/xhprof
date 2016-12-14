@@ -16,6 +16,7 @@ include_once MYZY_XHPROF_ROOT . "/lib/utils/xhprof_runs.php";
 class ZyXhprof
 {
     private static $_notLoadExtend = 'Failed to create Xhprof object; extension not loaded?';
+
     /**
      * 启动 xhprof 性能分析器
      * @param int $flags 分析添加额外信息的可选标记。
@@ -36,10 +37,10 @@ class ZyXhprof
      * @param string $namespace
      * @return null|string
      */
-    public static function stopProfiling($namespace = '')
+    public static function stopProfiling($namespace = '', $runId = '')
     {
         if (self::isSupported()) {
-            return self::saveProfiling(self::disableProfiling(), $namespace);
+            return self::saveProfiling(self::disableProfiling(), $namespace, $runId);
         }
         echo self::$_notLoadExtend;
         exit(1);
@@ -60,10 +61,10 @@ class ZyXhprof
      * @param string $namespace
      * @return null|string
      */
-    public static function stopSampleProfiling($namespace = '')
+    public static function stopSampleProfiling($namespace = '', $runId = '')
     {
         if (self::isSupported()) {
-            return self::saveProfiling(self::disableSampleProfiling(), $namespace);
+            return self::saveProfiling(self::disableSampleProfiling(), $namespace, $runId);
         }
         echo self::$_notLoadExtend;
         exit(1);
@@ -78,11 +79,12 @@ class ZyXhprof
         exit(1);
     }
 
-    public static function saveProfiling($xhprofData, $namespace)
+    public static function saveProfiling($xhprofData, $namespace = '', $runId = '')
     {
         if (self::isSupported()) {
             $xhprofRuns = new \XHProfRuns_Default();
-            return $xhprofRuns->save_run($xhprofData, $namespace);
+            $namespace = $namespace ? $namespace : ($_SERVER['QUERY_STRING'] ? $_SERVER['QUERY_STRING'] : 'index');
+            return $xhprofRuns->save_run($xhprofData, self::replace_specialChar($namespace), $runId);
         }
         echo self::$_notLoadExtend;
         exit(1);
@@ -100,5 +102,11 @@ class ZyXhprof
     protected static function isSupported()
     {
         return extension_loaded('xhprof');
+    }
+
+    protected static function replace_specialChar($strParam)
+    {
+        $regex = "/\/|\~|\!|\@|\#|\\$|\%|\^|\&|\*|\(|\)|\_|\+|\{|\}|\:|\<|\>|\?|\[|\]|\,|\.|\/|\;|\'|\`|\-|\=|\\\|\|/";
+        return preg_replace($regex, '-', $strParam);
     }
 }
