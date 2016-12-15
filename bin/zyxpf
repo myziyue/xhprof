@@ -1,5 +1,9 @@
 #!/bin/bash
 #!/usr/bin/env php
 
+echo -------------------------------------------------------------
+echo  MyZiyue Xhprof command line web server for Linux.
+echo -------------------------------------------------------------
+
 web_path=$(cd "$(dirname "$0")"; pwd)
 php -S 0.0.0.0:1105 -t $web_path/../myziyue/xhprof/html
