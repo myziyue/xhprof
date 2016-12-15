@@ -2,7 +2,7 @@
 #!/usr/bin/env php
 
 echo -------------------------------------------------------------
-echo  MyZiyue Xhprof command line web server for Windows.
+echo  MyZiyue Xhprof command line web server for Linux.
 echo -------------------------------------------------------------
 
 web_path=$(cd "$(dirname "$0")"; pwd)
