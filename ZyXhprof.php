@@ -68,7 +68,8 @@ class ZyXhprof
     public static function saveProfiling($xhprofData, $namespace = '')
     {
         $xhprofRuns = new \XHProfRuns_Default();
-        $namespace = $namespace ? $namespace : ($_SERVER['QUERY_STRING'] ? $_SERVER['QUERY_STRING'] : 'index');
+        $namespace = $namespace ? $namespace : (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ?
+            $_SERVER['QUERY_STRING'] : md5(time() . mt_rand()));
         return $xhprofRuns->save_run($xhprofData, self::replace_specialChar($namespace));
     }
 
