@@ -21,7 +21,7 @@ composer require myziyue/xhprof
 ### 方式1：嵌入到项目中
 ```
 <?php
-include './vendor/myziyue/xhprof/ZyXhprof.php';
+include './vendor/autoload.php';
 
 function foo() {
   for ($idx = 0; $idx < 5; $idx++) {
@@ -30,12 +30,12 @@ function foo() {
   }
 }
 
-ZyXhprof::startProfiling();
+\myziyue\xhprof\ZyXhprof::startProfiling(XHPROF_FLAGS_NO_BUILTINS | XHPROF_FLAGS_CPU | XHPROF_FLAGS_MEMORY);
 
 // run program
 foo();
 
-ZyXhprof::stopProfiling('demo');
+\myziyue\xhprof\ZyXhprof::stopProfiling('demo');
 ```
 
 ### 方式2： 通过注册系统关闭函数

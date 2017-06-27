@@ -9,4 +9,4 @@
 include_once 'ZyXhprof.php';
 
 //开启xhprof
-\myziyue\xhprof\ZyXhprof::startProfiling(XHPROF_FLAGS_MEMORY | XHPROF_FLAGS_CPU);
+\myziyue\xhprof\ZyXhprof::startProfiling(XHPROF_FLAGS_NO_BUILTINS | XHPROF_FLAGS_CPU | XHPROF_FLAGS_MEMORY);
